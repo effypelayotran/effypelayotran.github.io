@@ -66,7 +66,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                 box-sizing: border-box;
                 z-index: 1000;
                 opacity: 0; 
-                transition: opacity 1s ease-in-out; 
+                animation: riseIn 0.5s ease-in-out 0.5s forwards;
             }
 
             .menu-left {
@@ -225,20 +225,58 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
             #introBox .close-btn {
                 position: absolute;
                 top: 10px;
+                left: 15px;
+                background: none;
+                border: none;
+                color: white;
+                font-size: 14px;
+                font-weight: bold;
+                cursor: pointer;
+                padding: 0px;
+                margin: 0px;
+                opacity: 0; 
+                border-radius: 15px;
+                animation: riseIn 0.5s ease-in-out 1s forwards;
+                text-align: left;
+            }
+
+            #introBox .additional-btn {
+                position: absolute;
+                top: 150px;
                 left: 10px;
                 background: none;
+                border-radius: 15px;
                 border: none;
                 color: white;
                 font-size: 20px;
                 font-weight: bold;
                 cursor: pointer;
+                opacity: 0;
+                animation: riseIn 0.5s ease-in-out 1.5s forwards;
             }
+          
+          
+            @keyframes riseIn {
+                0% {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                100% {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
 
             #introBox .close-btn:hover {
                 color: rgb(204, 36, 36);
             }
 
-        
+            #introBox .additional-btn:hover {
+                color: rgb(204, 36, 36);
+            }
+
+          
 
             .rounded-button {
                 background-color: lightblue;
@@ -283,11 +321,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         <!-- <span style="display: block; font-size: 16px; font-weight: normal; padding-bottom: 20px">Undergraduate Researcher at Brown</span> -->
     </div>
     <div class="menu-right">
-        <a href="#projects">Visual Computing</a>
-        <a href="#projects">AI</a>
-        <a href="#projects">Systems</a>
-        <a href="#projects">Full-Stack</a>
-
+        <a href="#projects">Projects</a>
         <a href="#research">Research</a>
         <a href="#about">About</a>
     </div>
@@ -309,19 +343,19 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     <div class="row">
        
          <div id="introBox">
-            <!-- <img src="POSTER.gif" class="pull-left" style="margin:0px; padding:0px;  height:280px; width:200px;"/>  -->
+            <img src="IMG_8427.jpg" class="pull-left" style="margin:20px 20px 20px 20px; padding:0px;  height:120px; width:120px; border-radius: 100%;"/> 
 
-            <button class="close-btn" onclick="document.getElementById('introBox').style.display='none'">Drag the orange ball</button>
+            <!-- <button class="close-btn" onclick="document.getElementById('introBox').classList.remove('show')"><p >Drag the orange ball<br>to play with this <br> Eulierian Fluid <br> Physics Simulation</p></button>
 
-          
-          
+            <button class="additional-btn">See More Projects</button> -->
+           
             <h1 class="lead">Effy Pelayo Tran</h1>
             <p style="font-size: 24px;">
               Computer Science Senior & <br> Undergraduate Researcher at<br> Brown University
              <br>
-             <!-- <a href="mailto:effy_pelayo_tran@brown.edu
+             <a href="mailto:effy_pelayo_tran@brown.edu
              " style="color: lightblue; text-decoration: underline; ">effy_pelayo_tran@brown.edu
-             </a>  -->
+             </a> 
             </p>
             <p style="margin-bottom:0px;">I am a senior at Brown University pursuing a B.S. in Computer Science, specializing in <strong >Visual Computing, AI, and Systems.</strong> My work focuses on bridging theory and application— intersecting CS and the hard sciences of Math/Physics/Biology to <strong>model, simulate, and solve real-world problems. </strong>
                 <br> <br>
@@ -342,6 +376,40 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 	
 <script>
+
+document.addEventListener('DOMContentLoaded', () => {
+    const introBox = document.getElementById('introBox');
+    const aboutMenuButton = document.querySelector('.menu-right a[href="#about"]'); // Select the About menu button
+
+    // Event listener for the About button
+    aboutMenuButton.addEventListener('click', (event) => {
+        event.preventDefault(); // Prevent default anchor behavior
+        introBox.classList.add('show'); // Add the 'show' class to re-show the introBox
+    }); 
+
+    // Existing event listener for the hamburger menu
+    const hamburger = document.querySelector('.hamburger-menu');
+    const dropdownMenu = document.querySelector('.dropdown-menu');
+
+    hamburger.addEventListener('click', () => {
+        dropdownMenu.style.display =
+            dropdownMenu.style.display === 'block' ? 'none' : 'block';
+    });
+
+    // Close menu when clicking outside of hamburger
+    document.addEventListener('click', (event) => {
+        if (!hamburger.contains(event.target) && !dropdownMenu.contains(event.target)) {
+            dropdownMenu.style.display = 'none';
+        }
+    });
+});
+
+// Ensure the introBox fades out when the close button is clicked
+function hideIntroBox() {
+    const introBox = document.getElementById('introBox');
+    introBox.classList.remove('show');
+}
+
      window.addEventListener('load', () => {
         setTimeout(() => {
             const introBox = document.getElementById('introBox');
