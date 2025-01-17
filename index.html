@@ -20,8 +20,17 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     <link rel="stylesheet" href="/css/main.css">
 
 	<head>
-		<title>FLIP Fluid Simulation</title>
+		<title>Coding Portfolio</title>
 		<style>
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden; /* Prevent horizontal scrollbars */
+        }
+
 			body {
 				font-family: sans-serif; 
 				font-size: 15px;
@@ -40,23 +49,24 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 				cursor: pointer;
 			}
 
+            /* --- Top Bar Menu Div---*/
             .top-menu-bar {
                 position: absolute;
                 top: 0;
-                width: 100%;
+                width: 100vw;
                 height: 10vh;
                 background-color: rgba(28, 26, 26, 0.8);
                 color: white;
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                padding: 10px 20px;
+                padding: 10px 25px;
                 box-sizing: border-box;
                 z-index: 1000;
             }
 
             .menu-left {
-                font-size: 30px;
+                font-size: 32px;
                 font-family: sans-serif;
             }
 
@@ -65,7 +75,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                 gap: 20px;
                 font-size: 16px;
                 padding-right: 20px;
-
             }
 
             .menu-right a {
@@ -77,17 +86,80 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
             .menu-right a:hover {
                 color: lightblue;
             }
-			.slider {
-				-webkit-appearance: none;
-				width: 80px;
-				height: 6px;
-				border-radius: 5px;
-				background: #d3d3d3;
-				outline: none;
-				opacity: 0.7;
-				-webkit-transition: .2s;
-				transition: opacity .2s;
-			}
+
+            .hamburger-menu {
+                display: none; 
+                flex-direction: column;
+                gap: 5px;
+                cursor: pointer;
+            }
+
+            .hamburger-menu span {
+                width: 25px;
+                height: 2px;
+                background-color: white;
+                border-radius: 5px;
+                transition: all 0.3s;
+            }
+
+            .dropdown-menu {
+                display: none; 
+                position: absolute;
+                width: 100vw;
+                background-color: rgba(28, 26, 26, 0.9);
+                border-radius: 5px;
+                box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+                z-index: 999;
+            }
+
+            .dropdown-menu a {
+                display: block;
+                padding: 10px 20px;
+                text-decoration: none;
+                color: white;
+                transition: background-color 0.3s;
+            }
+
+            .dropdown-menu a:hover {
+                background-color: lightblue;
+                color: black;
+            }
+
+            @media (max-width: 520px) {
+                .menu-left {
+                    font-size: 28px
+                }
+                .top-menu-bar {
+                    padding-top: 5px;
+                    padding-bottom: 5px;
+                    padding-left: 15px;
+                    padding-right: 5px;
+                }
+            }
+
+            @media (max-width: 476px) {
+                .top-menu-bar {
+                    padding: 5px 15px; 
+                    width: 100%;
+                }
+
+                .menu-left {
+                    font-size: 2rem; 
+                }
+               
+            }
+
+            @media (max-width: 476px) {
+                .menu-right {
+                    display: none; 
+                }
+
+                .hamburger-menu {
+                    display: flex; 
+                }
+            }
+
+            /* --- Canvas Div --- */
             #myCanvas {
                 position: absolute;
                 bottom: 0;
@@ -99,10 +171,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                 border: none;
             }
 
-            .row {
-                background-color: white;
-            }
 
+            /* --- Intro Box Div --- */
             #introBox {
                 font: sans-serif;
                 position: absolute;
@@ -110,28 +180,41 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                 top: 50vh;
                 left: 50%;
                 transform: translate(-50%, -40%);
-                background-color: rgba(28, 26, 26, 0.9);
+                background-color: rgba(28, 26, 26, 0.95);
                 color: white;
                 text-align: right;
                 font-size: 14px;
                 z-index: 10;
                 border-radius: 4px;
 
-                font-size: 14px; /* Fixed font size */
-                width: 700px; /* Fixed width */
-                height: 600px;
-                
+                /* font-size: 14px; 
+                width: 700px; 
+                height: 580px; */
+                width: 90%; 
+                max-width: 700px; 
+                height: auto; 
+                max-height: 90%; 
+                overflow-y: auto; /
                 box-sizing: border-box; 
             }
 
+            #introBox h1 {
+                font-size: 36px;
+            }
+            #introBox p {
+                font-size: 21px;
+                margin-bottom: 15px; 
+            }
+
             .rounded-button {
-                background-color: #606060;
-                color: white;
+                background-color: lightblue;
+                color: black;
                 border: none;
                 border-radius: 25px;
-                padding: 15px;
-                font-size: 14px;
-                margin-top: 10px;
+                padding: 12px;
+                font-size: 18px;
+                font-weight: bold;
+                margin-top: 15px;
                 cursor: pointer;
                 transition: background-color 0.3s ease, transform 0.2s ease;
             }
@@ -148,6 +231,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
             #bottom {
                 background-color: blueviolet;
             }
+            
 		</style>
 	</head>
 	
@@ -167,50 +251,85 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     <div class="menu-right">
         <a href="#projects">Projects</a>
         <a href="#research">Research</a>
-        <a href="#research">About</a>
-        <a href="#research">Contact</a>
+        <a href="#about">About</a>
+    </div>
 
+     <!-- Responsive Design: Hamburger Menu -->
+     <div class="hamburger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <!-- Reponsive Design: Dropdown Menu -->
+    <div class="dropdown-menu">
+        <a href="#projects">Projects</a>
+        <a href="#research">Research</a>
+        <a href="#about">About</a>
     </div>
 </div>
    
     <div class="row">
        
          <div id="introBox">
-            <img src="IMG_8427.jpg" class="pull-left" style="margin:20px
-            20px 20px 0; height:140px; width:140px; border-radius:100%"/>
+            <!-- <img src="CLICK_THE.png" class="pull-left" style="margin:20px
+            20px 20px 0; height:140px; width:140px; border-radius:100%"/> -->
             <h1>Effy Pelayo Tran</h1>
             <p class="lead">
-              CS Major & Undergraduate Researcher 
-              <br>at Brown University
+              CS Major & Undergraduate Researcher at Brown University
              <br> contact: <a href="mailto:effypelayo@gmail.com
              " style="color: lightblue; text-decoration: underline;">effypelayo@gmail.com
              </a>
-              <br>
             </p>
-            <p style="font-size: 22px;">I am a senior at Brown University pursuing a B.S. in Computer Science, specializing in <strong>Visual Computing, AI, 
-		    and Computer Systems.</strong> I am focused on bridging theory and application— intersecting CS and the hard sciences of Math/Physics/Biology— to 
-		    simulate and solve real-world problems. 
+            <p>I am a senior at Brown University pursuing a B.S. in Computer Science, specializing in <strong>Visual Computing, AI, and Systems.</strong> My work focuses on bridging theory and application— intersecting CS and the hard sciences of Math/Physics/Biology <br> to model, simulate, and solve real-world problems. 
                 <br> <br>
 
-            With experience ranging from developing an accessibility-focused browser extension used by<strong> 850+ users </strong>worldwide to 
-		    using deep learning models for antibiotic drug discovery, I deliver code that drives <strong>measurable impact</strong>. 
+            With experience ranging from developing an accessibility-focused browser extension used by<strong> 850+ users </strong>worldwide to using deep learning models for antibiotic drug discovery, I deliver code that drives <strong>measurable impact</strong>. 
             <br>
-            <a href="#projects" style="color: lightblue; text-decoration: underline;">
-                Explore my portfolio of projects.
-            </a>
-            <br>
-            <!-- <button class="rounded-button">Let's connect.</button>
-            <button class="rounded-button">Take a look at my projects!</button>
+            <!-- <a href="#projects" style="color: lightblue; font-weight: bold; ">
+                Check out my recent projects.
+            </a> -->
+            <button class="rounded-button">Check out my recent projects.</button>
 
-             -->
+            
         </div>
       </div>
     
     <canvas id="myCanvas"></canvas>
-    <div id="bottom"></div>
+    <!-- <div id="instructionText" style="
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 20px;
+    color: white;
+    font-family: Arial, sans-serif;
+    text-shadow: 1px 1px 3px black;
+    z-index: 1000;
+">
+    Click and drag the orange ball on the screen
+</div> -->
+
 	
 <script>
+    // ----------------- for responsive web design -----------------
+    document.addEventListener('DOMContentLoaded', () => {
+        const hamburger = document.querySelector('.hamburger-menu');
+        const dropdownMenu = document.querySelector('.dropdown-menu');
 
+        hamburger.addEventListener('click', () => {
+            dropdownMenu.style.display =
+                dropdownMenu.style.display === 'block' ? 'none' : 'block';
+        });
+
+       // close menu when clicking outside of hamburger
+        document.addEventListener('click', (event) => {
+            if (!hamburger.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                dropdownMenu.style.display = 'none';
+            }
+        });
+    });
+
+    // ----------------- init vars -----------------
 	var canvas = document.getElementById("myCanvas");
 	var gl = canvas.getContext("webgl");	
 	canvas.width = window.innerWidth - 20;
