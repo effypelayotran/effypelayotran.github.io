@@ -20,7 +20,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     <link rel="stylesheet" href="/css/main.css">
 
 	<head>
-		<title>EFFY PELAYO TRAN"S PORTFOLIO</title>
+		<title>Coding Portfolio</title>
 		<style>
 
         html, body {
@@ -28,8 +28,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
             padding: 0;
             width: 100%;
             height: 100%;
-            overflow-x: hidden; 
-            overflow-y: scroll;
+            overflow-x: hidden; /* Prevent horizontal scrollbars */
         }
 
 			body {
@@ -57,7 +56,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                 width: 100vw;
                 height: 10vh;
                 background-color: rgba(28, 26, 26, 0.8);
-                
                 color: white;
                 display: flex;
                 justify-content: space-between;
@@ -69,7 +67,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
             .menu-left {
                 font-size: 32px;
-                font-family: "Helvetica Neue";
             }
 
             .menu-right {
@@ -128,8 +125,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
             }
 
             @media (max-width: 520px) {
-                .menu-right {
-                    font-size: 14px
+                .menu-left {
+                    font-size: 28px
                 }
                 .top-menu-bar {
                     padding-top: 5px;
@@ -161,8 +158,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                     display: flex; 
                 }
 
-                #introBox {
-                    transform: translate(-50%, -55%);
+		#introBox {
+                    transform: translate(-50%, -50%);
                 }
             }
 
@@ -190,31 +187,41 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                 background-color: rgba(28, 26, 26, 0.95);
                 color: white;
                 text-align: right;
+                font-size: 14px;
                 z-index: 10;
                 border-radius: 4px;
 
                 /* font-size: 14px; 
                 width: 700px; 
                 height: 580px; */
-
-                width: 85%; 
+                width: 90%; 
                 max-width: 700px; 
                 height: auto; 
-                max-height: 95%; 
+                max-height: 90%; 
                 overflow-y: auto; 
                 box-sizing: border-box; 
             }
 
             #introBox h1 {
-                font-size: 50px;
+                font-size: 36px;
             }
             #introBox p {
-                font-size: 20px;
-                margin-bottom: 15px;
+                font-size: 21px;
+                margin-bottom: 15px; 
             }
 
-           
-            
+            @media (max-width: 476px) {
+                #introBox h1 {
+                    font-size: 30px;
+                }
+                #introBox p {
+                    font-size: 16px;
+                }
+
+                .rounded-button {
+                    font-size: 16px;
+                }
+            }
 
             .rounded-button {
                 background-color: lightblue;
@@ -255,15 +262,11 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 	<input type = "range" min = "0" max = "10" value = "9" class = "slider" onchange="scene.flipRatio = 0.1 * this.value"> FLIP 
 <br> -->
 <div class="top-menu-bar">
-    <div class="menu-left" >Effy Pelayo Tran
+    <div class="menu-left">Effy Pelayo Tran
         <!-- <span style="display: block; font-size: 16px; font-weight: normal; padding-bottom: 20px">Undergraduate Researcher at Brown</span> -->
     </div>
     <div class="menu-right">
-        <a href="#projects">Visual Computing</a>
-        <a href="#projects">AI</a>
-        <a href="#projects">Systems</a>
-        <a href="#projects">Full-Stack</a>
-
+        <a href="#projects">Projects</a>
         <a href="#research">Research</a>
         <a href="#about">About</a>
     </div>
@@ -285,36 +288,47 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     <div class="row">
        
          <div id="introBox">
-            <img src="Poster_Gif.gif" class="pull-left" style="margin:0px; padding:0px;  height:300px; width:250px;"/>
-            <h1 class="lead">Effy Pelayo Tran</h1>
-            <p style="font-size: 24px;">
-              Computer Science Senior & <br> Undergraduate Researcher at<br> Brown University
-             <br>
-             <!-- <a href="mailto:effypelayo@gmail.com
+            <!-- <img src="CLICK_THE.png" class="pull-left" style="margin:20px
+            20px 20px 0; height:140px; width:140px; border-radius:100%"/> -->
+            <h1>Effy Pelayo Tran</h1>
+            <p class="lead">
+              CS Major & Undergraduate Researcher at Brown University
+             <br> contact: <a href="mailto:effypelayo@gmail.com
              " style="color: lightblue; text-decoration: underline;">effypelayo@gmail.com
-             </a>  -->
+             </a>
             </p>
-            <p>I am a senior at Brown University pursuing a B.S. in Computer Science, specializing in <strong style="color:lightblue;">Visual Computing, AI, and Systems.</strong> My work focuses on bridging theory and application— intersecting CS and the hard sciences of Math/Physics/Biology to <strong style="color:lightblue;">model, simulate, and solve real-world problems. </strong>
+            <p>I am a senior at Brown University pursuing a B.S. in Computer Science, specializing in <strong>Visual Computing, AI, and Systems.</strong> My work focuses on bridging theory and application— intersecting CS and the hard sciences of Math/Physics/Biology <br> to model, simulate, and solve real-world problems. 
                 <br> <br>
 
-            With experience ranging from developing an accessibility-focused browser extension used by<strong style="color: lightblue;""> 850+ users worldwide</strong> to using deep learning models for antibiotic drug discovery, I deliver code that drives <strong style="color:lightblue;">measurable impact</strong>. 
+            With experience ranging from developing an accessibility-focused browser extension used by<strong> 850+ users </strong>worldwide to using deep learning models for antibiotic drug discovery, I deliver code that drives <strong>measurable impact</strong>. 
             <br>
             <!-- <a href="#projects" style="color: lightblue; font-weight: bold; ">
                 Check out my recent projects.
             </a> -->
-            
+            <button class="rounded-button">Check out my recent projects.</button>
 
             
         </div>
       </div>
     
     <canvas id="myCanvas"></canvas>
-    
+    <!-- <div id="instructionText" style="
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 20px;
+    color: white;
+    font-family: Arial, sans-serif;
+    text-shadow: 1px 1px 3px black;
+    z-index: 1000;
+">
+    Click and drag the orange ball on the screen
+</div> -->
 
 	
 <script>
     // ----------------- for responsive web design -----------------
-
     document.addEventListener('DOMContentLoaded', () => {
         const hamburger = document.querySelector('.hamburger-menu');
         const dropdownMenu = document.querySelector('.dropdown-menu');
