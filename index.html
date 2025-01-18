@@ -66,7 +66,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                 box-sizing: border-box;
                 z-index: 1000;
                 opacity: 0; 
-                animation: riseIn 0.5s ease-in-out 0.5s forwards;
+                /* animation: riseIn 0.5s ease-in-out 0.5s forwards; */
             }
 
             .menu-left {
@@ -188,8 +188,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                 padding: 30px;
                 top: 50vh;
                 right: 5%;
-                transform: translate(0%, -40%);
-                background-color: rgba(28, 26, 26, 0.95);
+                transform: translate(0%, -50%);
+                background-color: rgb(28, 28, 28, 0.98);
                 color: white;
                 text-align: right;
                 z-index: 10;
@@ -229,7 +229,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                 background: none;
                 border: none;
                 color: white;
-                font-size: 14px;
+                font-size: 20px;
                 font-weight: bold;
                 cursor: pointer;
                 padding: 0px;
@@ -284,6 +284,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                 border: none;
                 border-radius: 25px;
                 padding: 12px;
+                margin-top: 15px;
                 font-size: 18px;
                 font-weight: bold;
                 margin-top: 0;
@@ -343,28 +344,29 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     <div class="row">
        
          <div id="introBox">
-            <img src="IMG_8427.jpg" class="pull-left" style="margin:20px 20px 20px 20px; padding:0px;  height:120px; width:120px; border-radius: 100%;"/> 
+            <!-- <img src="IMG_8427.jpg" class="pull-left" style="margin:20px 20px 20px 20px; padding:0px;  height:120px; width:120px; border-radius: 100%;"/>  -->
 
-            <!-- <button class="close-btn" onclick="document.getElementById('introBox').classList.remove('show')"><p >Drag the orange ball<br>to play with this <br> Eulierian Fluid <br> Physics Simulation</p></button>
+            <button class="close-btn" onclick="document.getElementById('introBox').classList.remove('show')">Drag the orange ball</button>
 
-            <button class="additional-btn">See More Projects</button> -->
+            <!-- <button class="additional-btn">See More Projects</button> -->
            
             <h1 class="lead">Effy Pelayo Tran</h1>
-            <p style="font-size: 24px;">
+            <p style="font-size: 24px; color: lightblue">
               Computer Science Senior & <br> Undergraduate Researcher at<br> Brown University
              <br>
-             <a href="mailto:effy_pelayo_tran@brown.edu
-             " style="color: lightblue; text-decoration: underline; ">effy_pelayo_tran@brown.edu
-             </a> 
+             <!-- <a href="mailto:effypelayo@gmail.com
+             " style="color: lightblue; text-decoration: underline; ">effypelayo@gmail.com
+             </a>  -->
             </p>
-            <p style="margin-bottom:0px;">I am a senior at Brown University pursuing a B.S. in Computer Science, specializing in <strong >Visual Computing, AI, and Systems.</strong> My work focuses on bridging theory and application— intersecting CS and the hard sciences of Math/Physics/Biology to <strong>model, simulate, and solve real-world problems. </strong>
+            <p style="margin-bottom:0px;">I am a senior at Brown University pursuing a B.S. in Computer Science, specializing in <strong >Visual Computing, AI, and Systems.</strong> I am focused on bridging theory and application— intersecting CS and the hard sciences of Biology/Chemistry/Physics to <strong style="color: lightblue">model, simulate, and solve real-world problems. </strong>
                 <br> <br>
 
-            With experience ranging from developing an accessibility-focused browser extension used by<strong> 850+ users worldwide</strong> to using deep learning models for antibiotic drug discovery, I deliver code that drives <strong >measurable impact</strong>. 
+            With experience ranging from developing an accessibility-focused browser extension used by<strong style="color: lightblue"> 850+ users worldwide</strong> to using deep learning models for antibiotic drug discovery, I am passionate about writing code that drives measurable impact.</strong> 
             <br>
-            <!-- <a href="#projects" style="color: lightblue; font-weight: bold; ">
+
+            <button class="rounded-button" style="font-weight: bold; margin-top: 15px; margin-bottom: 5px;">
                 Check out my recent projects.
-            </a> -->
+            </button>
             
 
             
@@ -478,7 +480,6 @@ function hideIntroBox() {
 		constructor(density, width, height, spacing, particleRadius, maxParticles) {
 
 			// fluid
-
 			this.density = density;
 			this.fNumX = Math.floor(width / spacing) + 1;
 			this.fNumY = Math.floor(height / spacing) + 1;
@@ -498,7 +499,6 @@ function hideIntroBox() {
 			this.cellColor = new Float32Array(3 * this.fNumCells);
 
 			// particles
-
 			this.maxParticles = maxParticles;
 
 			this.particlePos = new Float32Array(2 * this.maxParticles);
@@ -537,7 +537,6 @@ function hideIntroBox() {
 			var colorDiffusionCoeff = 0.001;
 
 			// count particles per cell
-
 			this.numCellParticles.fill(0);
 
 			for (var i = 0; i < this.numParticles; i++) {
